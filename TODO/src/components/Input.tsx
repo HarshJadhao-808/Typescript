@@ -12,7 +12,7 @@ const Input = () => {
 	const [todo,setTodo] = useState<Todo>({
 		task:"",
 		priority:"",
-		id:Date.now()
+		id:Math.floor(Math.random() * 10)
 	})
 
 	const sendIt = () => {

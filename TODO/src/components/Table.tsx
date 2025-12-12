@@ -7,9 +7,15 @@ const Table = () => {
     priority:string,
     id:number
   }
+  const [data,setData] = useState<Data[]>(JSON.parse(localStorage.getItem("todos")|| "[]" ))
 
-const data : Data[] = JSON.parse(localStorage.getItem("todos")|| "[]" ) 
-
+const deleteit = (el:Data) => {
+  const id = el.id
+  const updated = data.filter((el) => el.id !== id  )
+  setData(updated)
+  localStorage.setItem("todos",JSON.stringify(updated))
+  console.log(updated)
+}
   return (
     <div className='border-4 w-[100%] h-130 overflow-y-auto'>
       <table className='w-full h-full  '>
@@ -25,7 +31,7 @@ const data : Data[] = JSON.parse(localStorage.getItem("todos")|| "[]" )
             <tr key={el.id}>
               <td>{el.task}</td>
               <td>{el.priority}</td>
-              <td>Delete</td>
+              <td onClick={()=>deleteit(el)}>Delete</td>
             </tr>
           ))} 
         </tbody>
