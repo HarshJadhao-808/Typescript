@@ -12,12 +12,16 @@ const Input = () => {
 	const [todo,setTodo] = useState<Todo>({
 		task:"",
 		priority:"",
-		id:Math.floor(Math.random() * 10)
+		id:0
 	})
 
 	const sendIt = () => {
 		event?.preventDefault()
-		let updated = [...todos,todo]
+		const newTodo = {
+			...todo,
+			id: Math.floor(Math.random() * 1000),
+		};
+		let updated = [...todos,newTodo]
 		setTodos(updated)
 		localStorage.setItem("todos",JSON.stringify(updated))
 	}
